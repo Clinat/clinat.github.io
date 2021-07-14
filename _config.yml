@@ -1,9 +1,9 @@
 # Site settings
-title: "Cliff's Blog"
+title: "Clinat's Blog"
 subtitle: "如果事与愿违，一定是上天另有安排！"
 description: 博客描述
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://cliff-clq.github.io/" # 你的网址
+url: "https://clinat.github.io/" # 你的网址
 domain: "" # 你的域名
 page_no_title: "No title" # 文章无标题时默认显示内容
 beian: # "备案号"
