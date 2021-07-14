@@ -11,6 +11,7 @@ email: 573682304@qq.com
 
 permalink: /:year/:month/:day/:title/
 plugins:
+  - jekyll-feed
   - jekyll-paginate
 
 # Build settings
