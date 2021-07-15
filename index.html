@@ -16,7 +16,10 @@ layout: base
   </h2>
   
   <div class="post-meta">
-    <i class="icon-post-date"> {{ post.date | date: "%Y年%m月%d日" }}</i>
+    <span>
+      <i class="icon-post-date"> {{ post.date | date: "%Y年%m月%d日" }}
+      </i>
+    </span>
   </div>
   
   <div class="post-content">{{ post.content | strip_html | truncate:160 }}</div>
