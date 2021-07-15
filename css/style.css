@@ -899,22 +899,30 @@ figure.highlight {
 
 /* icomoon icon fonts*/
 @font-face {
-  font-family: 'icomoon';
-  src: url('../fonts/icomoon.eot?5xv1e3');
-  src: url('../fonts/icomoon.eot?5xv1e3#iefix') format('embedded-opentype'), url('../fonts/icomoon.ttf?5xv1e3') format('truetype'), url('../fonts/icomoon.woff?5xv1e3') format('woff'), url('../fonts/icomoon.svg?5xv1e3#icomoon') format('svg');
-  font-weight: normal;
-  font-style: normal; }
+    font-family: 'icomoon';
+    src: url('../fonts/icomoon.eot?jhbhm');
+    src: url('../fonts/icomoon.eot?jhbhm#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?jhbhm') format('truetype'),
+    url('../fonts/icomoon.woff?jhbhm') format('woff'),
+    url('../fonts/icomoon.svg?jhbhm#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
 
-i {
-  font-family: 'icomoon', "TIBch", "Classic Grotesque W01", "Helvetica Neue", Arial, "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "WenQuanYi Micro Hei", SimSun, sans-serif;
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; }
+[class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
 
 .icon-post-tag:before {
     content: "\e907";
@@ -936,29 +944,57 @@ i {
     content: "\f0da";
 }
 
-.icon-home:before {
-  content: "\e900"; }
+.icon-star:before {
+    content: "\e900";
+}
 
-.icon-history:before {
-  content: "\e901"; }
+.icon-link:before {
+    content: "\e901";
+}
+
+.icon-category:before {
+    content: "\e902";
+}
+
+.icon-new-post:before {
+    content: "\e903";
+}
+
+.icon-post-toc:before {
+    content: "\e903";
+}
+
+.icon-code-hub:before {
+    content: "\e904";
+}
+
+.icon-edit:before {
+    content: "\e905";
+}
+
+.icon-home:before {
+    content: "\e906";
+}
+
+.icon-tags:before {
+    content: "\e936";
+}
 
 .icon-guestbook:before {
-  content: "\e902"; }
+    content: "\e96d";
+}
 
 .icon-about:before {
-  content: "\e903"; }
-
-.icon-rss:before {
-  content: "\e905"; }
-
-.icon-previous:before {
-  content: "\e908"; }
-
-.icon-next:before {
-  content: "\e909"; }
+    content: "\e971";
+}
 
 .icon-archive:before {
-  content: "\e904"; }
+    content: "\e9ae";
+}
+
+.icon-rss:before {
+    content: "\ea9b";
+}
 
 /* post navigator*/
 .post-nav {
