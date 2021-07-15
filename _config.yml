@@ -27,6 +27,10 @@ paginate_path: "page/:num/"
 baidu_search: true
 google_search: # true
 
+codehub: # 代码仓库
+  - title: Github
+    url: https://github.com/Clinat
+
 # Menu settings
 menu:
   - page: 首页
