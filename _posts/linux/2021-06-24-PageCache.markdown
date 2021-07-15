@@ -136,7 +136,7 @@ Page Cache同步即回写磁盘，脏页只有经过同步之后才能被回收�
 
 相关的控制参数：
 
-sysctl -a ｜ grep dirty
+`sysctl -a ｜ grep dirty`
 
 vm.dirty_background_bytes = 0 与ratio相关设置不会同时生效
 
@@ -161,7 +161,7 @@ vm.dirty_writeback_centisecs = 500 多久唤醒一次刷新脏页的后台线程
 
 根据工作负载，可以调整两者的值。同时调小两者的值，可以让数据更及时地刷到硬盘，减少在Page Cache缓存的数据；同时增大两者的值，会增大数据丢失和高I/O延迟的风险，适合多进程重复读写一个文件；减小vm.dirty_background_ratio，同时增大vm.dirty_ratio，适合处理突发的数据流，可以使更多的数据保存在Cache中使I/O处理更加平滑，但也会增大数据丢失的风险。
 
-cat /proc/vmstat | egrep "dirty|writeback"
+`cat /proc/vmstat | egrep "dirty|writeback"`
 
 nr_dirty 需要写到磁盘的脏页数
 
