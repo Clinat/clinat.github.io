@@ -114,7 +114,8 @@ a:focus {
         line-height: 1.5;
         padding: 5px; }
     #sidebar .widget ul {
-      list-style: none;
+      list-style-type: disc;
+      margin-left: 18px;
       padding: 0; }
       #sidebar .widget ul li {
         margin: 5px 0;
