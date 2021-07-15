@@ -916,7 +916,7 @@ i {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
-.icon-post-data {
+.icon-post-data:before {
   content: "\e900"; }
 
 .icon-home:before {
