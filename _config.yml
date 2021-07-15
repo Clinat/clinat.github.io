@@ -41,9 +41,6 @@ menu:
   - page: 历史
     directory: history/
     icon: icon-history
-  - page: 订阅
-    directory: feed.xml
-    icon: icon-rss
 
 # Link settings
 links: # 友情链接
