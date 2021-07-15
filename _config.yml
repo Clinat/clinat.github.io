@@ -1,5 +1,6 @@
 # Site settings
 title: "Clinat's Blog"
+chinesetitle: "青光览明月"
 subtitle: "如果事与愿违，一定是上天另有安排！"
 description: 博客描述
 baseurl: "" # the subpath of your site, e.g. /blog
