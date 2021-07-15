@@ -291,7 +291,8 @@ a:focus {
   padding: .8em 0 3.6em;
   margin-top: 1em;
   line-height: 1.5;
-  color: #999; }
+  color: #999; 
+  text-align: center;}
   #footer span {
     font-size: .9em; }
 
