@@ -308,21 +308,19 @@ a:focus {
     padding-right: .7em; }
 
 #categories {
-  padding: 0;
-  margin: 0; }
-  #categories .category {
-    margin: 10px 0 20px 0;
-    text-align: center; }
-    #categories .category a {
-      text-align: left;
-      display: inline-block;
-      border: 1px solid #ddd;
-      padding: 20px 40px;
-      min-width: 100px; }
-      #categories .category a h3 {
-        margin: 0; }
-      #categories .category a:hover {
-        border-color: #888; }
+    margin-left: -20px;
+}
+
+#categories li {
+    background-image: none;
+    list-style: none;
+    list-style-image: none;
+    display: inline-block;
+}
+
+#categories a {
+    margin-right: 1em;
+}
 
 /* for different pages ends*/
 /*<middle*/
