@@ -19,6 +19,7 @@ plugins:
 markdown: kramdown
 kramdown:
   input: GFM
+highlighter: rouge
 
 # Pageinate settings
 paginate: 8 # 分页大小
