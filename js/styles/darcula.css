@@ -9,11 +9,11 @@ Darcula color scheme from the JetBrains family of IDEs
   display: block;
   overflow-x: auto;
   padding: 0.5em;
-  background: #F3F2F2;
+  background: #2b2b2b;
 }
 
 .hljs {
-  color: #2b2b2b;
+  color: #bababa;
 }
 
 .hljs-strong,
@@ -27,7 +27,7 @@ Darcula color scheme from the JetBrains family of IDEs
 .hljs-number,
 .hljs-regexp,
 .hljs-literal {
-  color: #1975E3;
+  color: #6896ba;
 }
 
 .hljs-code,
