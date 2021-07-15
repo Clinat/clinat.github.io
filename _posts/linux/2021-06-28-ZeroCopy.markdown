@@ -1,0 +1,59 @@
+---
+layout:     post
+title:      "零拷贝技术"
+date:       2021-06-28 11:05:00
+categories: 技术
+tags: Linux
+---
+
+开篇诗两句：
+
+​        **十年生死两茫茫，不思量，自难忘。**
+
+​        **千里孤坟，无处话凄凉。**                         ——苏轼《江城子》
+
+
+
+## 零拷贝
+
+实现零拷贝的方式主要有两种： 
+
+（1）MMAP + write  
+
+通过MMAP的方式直接将文件加载到内存，减少一次CPU的拷贝，然后通过write方法将内存中数据写到socket缓冲区中 
+
+（2）FileChannel 
+
+FileChannel实现零拷贝的方式主要是采用操作系统的sendfile，调用FileChannel.transferTo方法会直接将PageCache中的数据拷贝的到Socket缓冲区中，进行数据传输 
+
+参考文档：[https://zhuanlan.zhihu.com/p/83398714](https://zhuanlan.zhihu.com/p/83398714)
+
+## FileChannel和MMAP
+
+MMAP采用的是虚拟内存管理方式，通过将磁盘上的文件映射到虚拟内存中的连续地址空间，来实现应用进程直接通过操作内存的方式来读写磁盘文件。MMAP并不是将文件全部保存到内存中，采用虚拟内存的方式，将当前需要操作的文件部分加载的内存中，如果需要操作文件的其他部分，会通过内存交换的方式将需要的文件内容加载到内存中。 
+
+MMAP只有在映射文件的时候才会存在状态切换，读文件和写文件的操作不会进行执行状态切换（虚拟内存如果内存页没有命中，会触发缺页中断进行内存交换，会存在执行状态的切换） 
+
+FileChannel是采用PageCache进行文件读写的，并且每次读写文件时都需要执行状态的切换（因为需要访问PageCache） 
+
+网上很多说FileChannel在传输4KB整数倍的数据量时效果比MMAP好，但是也有不同的观点，主要是因为FileChannel根据页进行文件读写的。
+
+FileChannel可以调用map方法进行MMAP的方式读写文件。
+
+FileChannel和MMAP 
+
+[https://www.cnkirito.moe/file-io-best-practise/](https://www.cnkirito.moe/file-io-best-practise/)
+
+MMAP和SendFile 
+
+[https://cloud.tencent.com/developer/article/1805566](https://cloud.tencent.com/developer/article/1805566)
+
+#### MMAP注意
+
+（1）MMAP本身是指定内存映射的大小，所以不适合变长的文件
+
+（2）从读写速度上来看，如果文件存在大量的随机操作，会导致产生大量的回写以及随机IO操作，进而导致MMAP减少执行状态切换的优势降低，导致MMAP的实际写入速度不一定比普通IO快。
+
+（3）MMAP文件的大小收到操作系统位数的限制
+
+（4）MMAP非常适用于进程间通信，MMAP文件使用的物理内存是多进程共享的
