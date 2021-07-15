@@ -976,6 +976,10 @@ figure.highlight {
     content: "\e906";
 }
 
+.icon-history:before {
+    content: "\e909"; 
+}
+
 .icon-tags:before {
     content: "\e936";
 }
