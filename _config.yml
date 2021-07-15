@@ -47,6 +47,12 @@ menu:
     directory: history/
     icon: icon-history
 
+recommendations:
+  - title: Kafka端到端延迟分析总结
+    url: https://clinat.github.io/2021/06/30/KafkaLatency/
+  - title: PageCache
+    url: https://clinat.github.io/2021/06/24/PageCache/
+
 # Link settings
 links: # 友情链接
   - title: site-name1
