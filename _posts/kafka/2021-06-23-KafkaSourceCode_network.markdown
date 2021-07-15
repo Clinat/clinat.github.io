@@ -158,7 +158,7 @@ private def acceptNewConnections(): Unit = {
 
 Processor线程有如下几个重要属性：
 
-```java
+```scala
 private val newConnections = new ArrayBlockingQueue[SocketChannel](connectionQueueSize)
 private val inflightResponses = mutable.Map[String, RequestChannel.Response]()
 private val responseQueue = new LinkedBlockingDeque[RequestChannel.Response]()
@@ -172,7 +172,7 @@ responseQueue也是一个阻塞队列，主要的作用是请求处理完成之�
 
 每个Processor线程都有独立的selector来处理READ事件和WRITE事件：
 
-```java
+```scala
 private val selector = createSelector(
     ChannelBuilders.serverChannelBuilder(
       listenerName,
