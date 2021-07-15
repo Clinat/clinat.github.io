@@ -4,62 +4,23 @@ title: Category
 permalink: /category/
 ---
 
-<script>
-  var query = location.search;
-  query = query.substring(1);
-  var kvs = query.split('&');
-  var key;
-  for (var i=0;i<kvs.length;i++){
-    var kv = kvs[i];
-    var k = kv.split('=');
-    if (k.length == 2) {
-      if (k[0] == 'key') {
-        key = k[1];
-      }
-    }
-  }
-  if (key.indexOf('/') != -1) {
-    key = '';
-  } else {
-    key = decodeURI(key);
-  }
-</script>
+<div class="category">
+  <h1>文章分类</h1>
 
-正在查看 "<script>document.write(key);</script>" 下的文章
+  <ul id="categories">
+  {% for category in site.categories %}
+    <li><a href="{{ site.baseurl }}/category/#{{ category | first }}">{{ category | first }}({{ category | last | size }})</a></li>
+  {% endfor %}
+  </ul>
 
-<div class="post">
-  <div class="post-archive">
-  {% for post in site.posts %}
-    <!-- <h2>{{ post.date | date: "%Y" }}</h2> -->
-    <ul class="listing" style="display: none;">
-      <li>
-      <span class="date">{{ post.date | date: "%Y/%m/%d" }}</span>
-      <a href="{{ post.url | prepend: site.baseurl }}" key="{{ post.categories }}">
-      {% if post.title %}
-  		{{ post.title }}
-  	  {% else %}
-  		{{ site.page_no_title }}
-  	  {% endif %}
-  	  </a>
-  	</li>
-    </ul>
+  <div class="post post-archive">
+  {% for category in site.categories %}
+  <h3 id="{{ category | first }}">{{ category | first }}</h3>
+  <ul class="arc-list">
+      {% for post in category.last %}
+          <li><span class="date">{{ post.date | date: "%B %e, %Y" }}</span><a href="{{ post.url }}">{{ post.title }}</a></li>
+      {% endfor %}
+  </ul>
   {% endfor %}
   </div>
 </div>
-
-<script>
-  window.onload=function() {
-    var items = $('.post-archive a');
-    for (var i=0; i<items.length; i++) {
-      var item = items[i];
-      if ($(item).attr('key').toLowerCase().indexOf(key.toLowerCase()) == -1) {
-        $(item.parentElement.parentElement).remove();
-      } else {
-      	$(item.parentElement.parentElement).show();
-      }
-    }
-    if ($('.post-archive a').length == 0) {
-      $('.post-archive').html('<font color="red">没有记录</font>')
-    }
-  }
-</script>
