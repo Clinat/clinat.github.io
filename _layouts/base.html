@@ -80,13 +80,28 @@
             </div>
             
             <div class="widget">
-                <div class="widget-title">分类</div>
+                <div class="widget-title"><i class="icon-edit"> 心灵毒鸡汤</i></div><ul></ul>
+                  此处风景美如画，本想吟诗赠天下。<br>
+                  奈何本人没文化，一句卧槽行天下。<br>
+                  <br>
+<!--                 <td style="text-align: center"><a style="color: slategrey"></a>
+
+                  微信公众号:
+
+                    <a href="https://mp.weixin.qq.com/s/dCxGcuv5ngyR6U-uBYVI9Q"
+                      style="color: darkorange;"
+                      target="_blank" title="点击直达微信公众号～～"><u><b>璇珠杂俎</b></u></a>
+                </td> -->
+            </div>
+            
+            <div class="widget">
+                <div class="widget-title"><i class="icon-category"> 文章分类</i></div>
                 <ul class="category-list">
-                  {% for category in site.categories %}
-                    <li class="category-list-item">
-                      <a class="category-list-link" href="{{ site.baseurl }}/category/?key={{ category[0] }}">{{ category[0] }}</a>
-                    </li>
-                  {% endfor %}
+                    {% for category in site.categories %}
+                        <li class="category-list-item">
+                            <a class="category-list-link" href="{{ site.baseurl }}/category/#{{ category[0] }}">{{ category[0] }} ({{ category[1] | size }})</a>
+                        </li>
+                    {% endfor %}
                 </ul>
             </div>
               
@@ -99,22 +114,32 @@
                 </div>
             </div>
               
+            
             <div class="widget">
-                <div class="widget-title">相关推荐</div>
-                <ul class="post-list">
-                {% for post in site.related_posts %}
-                  <li class="post-list-item"><a class="post-list-link" href="{{ post.url | prepend: site.baseurl }}">{% if post.title %} {{ post.title }} {% else %} {{ site.page_no_title }} {% endif %}</a></li>
-                {% endfor %}
-                </ul>
+                <div class="widget-title"><i class="icon-star"> 推荐文章</i></div>
+<!--                 <ul class="post-list">
+                    <li class="post-list-item"><a class="post-list-link" href="https://www.oukohou.wang/2018/10/11/S3FD-Single-Shot-Scale-invariant-Face-Detector/">S3FD:Single Shot Scale-invariant Face Detector</a></li>
+                </ul> -->
+            </div>
+            
+            <div class="widget">
+              <div class="widget-title"><i class="icon-code-hub"> 代码仓库</i></div>
+              <ul class="codehub-list">
+              {% for hub in site.codehub %}
+                <li class="codehub-list-item"><a href="{{ hub.url }}" title="{{ hub.title }}" target="_blank">{{ hub.title }}</a></li>
+              {% endfor %}
+              </ul>
             </div>
               
             <div class="widget">
-              <div class="widget-title">友情链接</div>
+              <div class="widget-title"><i class="icon-link"> 友情链接</i></div>
+              <ul class="link-list">
               {% for link in site.links %}
-                <a href="{{ site.baseurl }}/{{ menu.directory }}"><i class="{{ menu.icon }}"> {{ menu.page }}</i></a>
-                <ul></ul><a href="{{ link.url }}" title="{{ link.title }}" target="_blank">{{ link.title }}</a>
+                <li class="link-list-item"><a href="{{ link.url }}" title="{{ link.title }}" target="_blank">{{ link.title }}</a></li>
               {% endfor %}
+              </ul>
             </div>
+            
           </div>
         </div>
       </div>
