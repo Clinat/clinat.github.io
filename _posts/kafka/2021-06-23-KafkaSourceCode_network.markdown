@@ -480,4 +480,4 @@ private def processCompletedReceives(): Unit = {
 
 ## 线程模型
 
-<img src="/assets/Kafka/kafka_network_threadModel.png" style="zoom:50%" />
+<img src="/assets/kafka/kafka_network_threadModel.png" style="zoom:50%" />

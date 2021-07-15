@@ -19,7 +19,7 @@ tags: Kafka
 - 追赶用时：当前消费offset追赶到生产offset的耗时
 - 拉取耗时：从Broker集群拉取消息的耗时
 
-<img src="/assets/Kafka/kafkaLatency01.png" style="zoom:50%" />
+<img src="/assets/kafka/kafkaLatency01.png" style="zoom:50%" />
 
 下面详细分析各个阶段耗时的影响因素。
 
@@ -53,7 +53,7 @@ max.inflight.requests.per.connection是限制同一个链接最多允许存在�
 
 提交耗时主要指follower副本从leader副本同步数据的耗时。在ack为-1的场景的下，只有ISR中的follower都完成数据同步之后，Broker才会ack发送请求，所以发送请求的耗时是从消息生产，到Broker完成ack响应的总时间。
 
-<img src="/assets/Kafka/kafkaLatency02.png" style="zoom:50%" />
+<img src="/assets/kafka/kafkaLatency02.png" style="zoom:50%" />
 
 同时，消费者也只能拉取提交之后的消息(所有ISR副本同步完成之后的消息)。
 
@@ -112,7 +112,7 @@ fetch请求的处理耗时增加，必然导致发送耗时增加。此外，因
 
 在消费速度完全能够跟上生产速度的情况下，这部分耗时几乎为0。
 
-<img src="/assets/Kafka/kafkaLatency03.png" style="zoom:50%" />
+<img src="/assets/kafka/kafkaLatency03.png" style="zoom:50%" />
 
 ## 拉取耗时
 
