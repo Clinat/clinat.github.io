@@ -916,6 +916,26 @@ i {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
+.icon-post-tag:before {
+    content: "\e907";
+}
+
+.icon-post-date:before {
+    content: "\e908";
+}
+
+.icon-post-category:before {
+    content: "\e909";
+}
+
+.icon-post-pre:before {
+    content: "\f0d9";
+}
+
+.icon-post-next:before {
+    content: "\f0da";
+}
+
 .icon-home:before {
   content: "\e900"; }
 
