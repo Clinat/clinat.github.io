@@ -120,6 +120,11 @@
 <!--                 <ul class="post-list">
                     <li class="post-list-item"><a class="post-list-link" href="https://www.oukohou.wang/2018/10/11/S3FD-Single-Shot-Scale-invariant-Face-Detector/">S3FD:Single Shot Scale-invariant Face Detector</a></li>
                 </ul> -->
+              <ul class="post-list">
+                {% for post in site.recommendations %}
+                <li class="post-list-item"><a class="post-list-link" href="{{ post.url }}">{{ post.title }}</a></li>
+                {% endfor %}
+              </ul>
             </div>
             
             <div class="widget">
