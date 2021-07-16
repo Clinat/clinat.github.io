@@ -25,7 +25,7 @@ layout: base
     	<span class="post-tag">
     		<i class="icon-post-tag">
     		{% for page_tag in page.tags %}
-		<a href="{{ site.baseurl }}/tags/#{{ page_tag }}">{{ page_tag }}</a>
+		<a href="{{ site.baseurl }}/tag/?key={{ page_tag }}">{{ page_tag }}</a>
     		{% endfor %}
     		</i>
 	</span>
