@@ -101,7 +101,7 @@
                 <div class="widget-title"><i class="icon-star"> 标签列表</i></div>
                 <div class="tagcloud">
                   {% for tag in site.tags %}
-                    <a href="{{ site.baseurl }}/tag/?key={{ tag[0] }}" style="font-size: 15px;">{{ tag[0] }}</a>
+                    <a href="{{ site.baseurl }}/tag/?key={{ tag[0] }}" style="font-size: 15px;">{{ tag[0] }} ({{ tag[1] | size }})</a>
                   {% endfor %}
                 </div>
             </div>
