@@ -283,6 +283,11 @@ a:focus {
     .page-navigator span.next {
       float: right; }
 
+.page-navigator .page-number {
+    display: inline-block;
+    text-align: center;
+}
+
 #footer {
   padding: .8em 0 3.6em;
   margin-top: 1em;
