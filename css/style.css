@@ -257,7 +257,8 @@ a:focus {
   list-style: none;
   margin-top: 25px;
   padding: 25px 0;
-  font-size: 14px; }
+  font-size: 14px;
+  text-align: center;}
   .page-navigator a {
     display: inline-block;
     height: 25px;
