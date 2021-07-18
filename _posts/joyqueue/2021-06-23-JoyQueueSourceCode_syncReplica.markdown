@@ -2,7 +2,7 @@
 layout:     post
 title:      "JoyQueue源码-副本同步"
 date:       2021-06-23 20:35:00
-catalog: true
+categories: 技术
 tags: JoyQueue
 ---
 
