@@ -2,7 +2,7 @@
 layout: post
 title:  "《凤凰架构》学习梳理——分布式一致性算法"
 date:   2021-07-30 16:24:00
-categories: 技术
+categories: 架构
 tags: 架构
 ---
 <br/>
