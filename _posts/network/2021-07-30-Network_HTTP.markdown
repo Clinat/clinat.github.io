@@ -59,7 +59,7 @@ HTTP协议的请求报文和响应报文结构基本相同，由三部分组成�
 
 （3）消息正文（body）：实际传输的数据，不一定是纯文本，可以是图片视频等二进制数据
 
-<img src="/assets/network/http01.png" style="zoom:50%" />
+<img src="/assets/network/http/http01.png" style="zoom:50%" />
 
 ### 请求行和状态行
 
@@ -71,13 +71,13 @@ HTTP协议的请求报文和响应报文结构基本相同，由三部分组成�
 
 例如：HTTP/1.1 200 OK
 
-<img src="/assets/network/http02.png" style="zoom:50%" />
+<img src="/assets/network/http/http02.png" style="zoom:50%" />
 
 ### 头部字段
 
 头部字段采用key-value的形式，并且请求报文和响应报文的头部字段格式基本一致，这里仅按照请求报文进行介绍：
 
-<img src="/assets/network/http03.png" style="zoom:50%" />
+<img src="/assets/network/http/http03.png" style="zoom:50%" />
 
 字段名不区分大小写，不允许空格，不能使用下划线"_"，字段名后必须紧接着":"，":"后可以有多个空格。字段的顺序没有意义。
 

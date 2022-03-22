@@ -27,20 +27,20 @@ G1（Garbage First）是当今垃圾回收机制中最前沿的成功之一，�
 
 当前JVM主流的收集器如下：
 
-<img src="/assets/jvm/g101.png" style="zoom:50%" />
+<img src="/assets/jvm/g1/g101.png" style="zoom:50%" />
 
 各个收集器对比：
 
-| 收集器&nbsp;&nbsp; | 组合&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 流程图                                              | 优劣势                                                       |
-| ------------------ | ------------------------------------------------------------ | :-------------------------------------------------- | ------------------------------------------------------------ |
-| 串行收集器         | Serial + Serial <br/>OldSerial用于回收新生代<br/>Serial Old用于回收老年代。 | <img src="/assets/jvm/g112.png" style="zoom:50%" /> | **优势：**由于串行收集器采用的是单线程的处理方式，所有复杂度更低，占用内存少<br/>**劣势：**回收速度不高，STW（Stop The World）导致应用停顿时间过长。 |
-| 并行收集器         | Parallel Scavenge + Parallel Old<br/>Parallel Scavenge回收新生代<br/>Parallel Old回收老年代 | <img src="/assets/jvm/g113.png" style="zoom:50%" /> | **优势：**GC过程是多线程并发执行，回收速度相对于串行收集器更快，适合高吞吐场景<br/>**劣势：**占用资源相对于串行收集器要更多一点，并且不适合延迟要求高的场景<br/>新生代：复制整理算法，老年代：标记整理算法<br/>本身是追求高吞吐的收集器 |
-| CMS                | ParNew + CMS + Serial Old<br/>ParNew回收新生代<br/>CMS回收老年代<br/>Serial Old兜底策略 | <img src="/assets/jvm/g114.png" style="zoom:50%" /> | **优势：**GC过程是多线程执行，以关注延迟为目标<br/>**劣势：**吞吐量方面不如并行收集器CMS在进行内存回收时会增加堆内存的使用量，所以CMS进行回收时，必须要在老年代堆内存用尽之前，否则就必须通过Serial Old进行串行回收，导致更大的停顿CMS使用的时标记清除算法，会产生内存碎片<br/>新生代：复制整理算法，老年代：（1）初始标记（STW）（2）并发标记（3）重新标记（STW）（4）并发清除 |
-| Garbage First      | Garbage First即收集新生代，又收集老年代                      | <img src="/assets/jvm/g115.png" style="zoom:50%" /> | **优势：**以关注延迟为目标，引入分区思想，进一步降低延迟时间，同时解决CMS内存碎片的问题<br/>**劣势：**需要更多的内存来完成内存回收，如果内存不足，同样需要使用串行回收作为兜底策略 |
+| 收集器&nbsp;&nbsp; | 组合&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 流程图                                                 | 优劣势                                                       |
+| ------------------ | ------------------------------------------------------------ | :----------------------------------------------------- | ------------------------------------------------------------ |
+| 串行收集器         | Serial + Serial <br/>OldSerial用于回收新生代<br/>Serial Old用于回收老年代。 | <img src="/assets/jvm/g1/g112.png" style="zoom:50%" /> | **优势：**由于串行收集器采用的是单线程的处理方式，所有复杂度更低，占用内存少<br/>**劣势：**回收速度不高，STW（Stop The World）导致应用停顿时间过长。 |
+| 并行收集器         | Parallel Scavenge + Parallel Old<br/>Parallel Scavenge回收新生代<br/>Parallel Old回收老年代 | <img src="/assets/jvm/g1/g113.png" style="zoom:50%" /> | **优势：**GC过程是多线程并发执行，回收速度相对于串行收集器更快，适合高吞吐场景<br/>**劣势：**占用资源相对于串行收集器要更多一点，并且不适合延迟要求高的场景<br/>新生代：复制整理算法，老年代：标记整理算法<br/>本身是追求高吞吐的收集器 |
+| CMS                | ParNew + CMS + Serial Old<br/>ParNew回收新生代<br/>CMS回收老年代<br/>Serial Old兜底策略 | <img src="/assets/jvm/g1/g114.png" style="zoom:50%" /> | **优势：**GC过程是多线程执行，以关注延迟为目标<br/>**劣势：**吞吐量方面不如并行收集器CMS在进行内存回收时会增加堆内存的使用量，所以CMS进行回收时，必须要在老年代堆内存用尽之前，否则就必须通过Serial Old进行串行回收，导致更大的停顿CMS使用的时标记清除算法，会产生内存碎片<br/>新生代：复制整理算法，老年代：（1）初始标记（STW）（2）并发标记（3）重新标记（STW）（4）并发清除 |
+| Garbage First      | Garbage First即收集新生代，又收集老年代                      | <img src="/assets/jvm/g1/g115.png" style="zoom:50%" /> | **优势：**以关注延迟为目标，引入分区思想，进一步降低延迟时间，同时解决CMS内存碎片的问题<br/>**劣势：**需要更多的内存来完成内存回收，如果内存不足，同样需要使用串行回收作为兜底策略 |
 
 ## G1内存模型
 
-<img src="/assets/jvm/g102.png" style="zoom:50%" />
+<img src="/assets/jvm/g1/g102.png" style="zoom:50%" />
 
 ## 相关概念
 
@@ -57,13 +57,13 @@ G1（Garbage First）是当今垃圾回收机制中最前沿的成功之一，�
 
 Young GC需要STW（Stop the world）
 
-| 名称&nbsp;&nbsp;             | 描述                                                         | 结构图                                              |
-| :--------------------------- | ------------------------------------------------------------ | --------------------------------------------------- |
-| **选择收集分区集合（CSet）** | Young GC过程的CSet会包括所有的年轻代分区。                   | <img src="/assets/jvm/g103.png" style="zoom:50%" /> |
-| **根扫描**                   | 通过Root判断CSet集合中的分区中哪些是存活对象（包括整个引用路径） | <img src="/assets/jvm/g104.png" style="zoom:50%" /> |
-| **RSet扫描**                 | 更新RSet，应为RSet的更新是异步写入的，所以需要保证RSet是最新的，见7.2<br/>通过Region中的RSet判断有哪些对象被引用，并标记成存活对象（包括整个引用路径） | <img src="/assets/jvm/g105.png" style="zoom:50%" /> |
-| **复制整理**                 | 将步骤2和步骤3标记的存活对象复制到新的survivor分区中GC线程在进行对象复制时<br/>不是所有GC线程都向同一个Region复制，而是复制到自己的私有缓冲区中（PLAB） | <img src="/assets/jvm/g106.png" style="zoom:50%" /> |
-| **释放分区**                 | 将原本年轻代的分区全部释放                                   | <img src="/assets/jvm/g107.png" style="zoom:50%" /> |
+| 名称&nbsp;&nbsp;             | 描述                                                         | 结构图                                                 |
+| :--------------------------- | ------------------------------------------------------------ | ------------------------------------------------------ |
+| **选择收集分区集合（CSet）** | Young GC过程的CSet会包括所有的年轻代分区。                   | <img src="/assets/jvm/g1/g103.png" style="zoom:50%" /> |
+| **根扫描**                   | 通过Root判断CSet集合中的分区中哪些是存活对象（包括整个引用路径） | <img src="/assets/jvm/g1/g104.png" style="zoom:50%" /> |
+| **RSet扫描**                 | 更新RSet，应为RSet的更新是异步写入的，所以需要保证RSet是最新的，见7.2<br/>通过Region中的RSet判断有哪些对象被引用，并标记成存活对象（包括整个引用路径） | <img src="/assets/jvm/g1/g105.png" style="zoom:50%" /> |
+| **复制整理**                 | 将步骤2和步骤3标记的存活对象复制到新的survivor分区中GC线程在进行对象复制时<br/>不是所有GC线程都向同一个Region复制，而是复制到自己的私有缓冲区中（PLAB） | <img src="/assets/jvm/g1/g106.png" style="zoom:50%" /> |
+| **释放分区**                 | 将原本年轻代的分区全部释放                                   | <img src="/assets/jvm/g1/g107.png" style="zoom:50%" /> |
 
 ## MixedGC流程
 
@@ -137,7 +137,7 @@ Bitmap B中每个Bit表示Region B中的一个Card，通过这种方式记录Reg
 
 这种存储方式相较于上面稀少等级，需要占用更多的存储空间，而且是间接保存的引用关系，所以扫描耗时会相对更长。
 
-<img src="/assets/jvm/g108.png" style="zoom:50%" />
+<img src="/assets/jvm/g1/g108.png" style="zoom:50%" />
 
 **（3）粗粒度**
 
@@ -227,7 +227,7 @@ SATB 会维护两个Bitmap，PrevBitmap和NextBitmap。PrevBitmap存的是上一
 
 从上面看到标记阶段实际就是为了维护PrevBitmap，通过这个Bitmap，就能知道一个Region上有多少存活object，从而能够根据dead object空间占比来排序，找出GC效率最高的Region来GC。
 
-<img src="/assets/jvm/g109.png" style="zoom:50%" />
+<img src="/assets/jvm/g1/g109.png" style="zoom:50%" />
 
 ### 写前栅栏（pre-write barrier）
 
@@ -268,8 +268,8 @@ w.f = z      // 由于某种原因将 z 救活
 
 （1）没有写前栅栏，可能出现漏标记的情况：
 
-<img src="/assets/jvm/g110.png" style="zoom:50%" />
+<img src="/assets/jvm/g1/g110.png" style="zoom:50%" />
 
 （2）增加写前栅栏后，当移除B对C的引用后，会将C标记成存活状态
 
-<img src="/assets/jvm/g111.png" style="zoom:50%" />
+<img src="/assets/jvm/g1/g111.png" style="zoom:50%" />
